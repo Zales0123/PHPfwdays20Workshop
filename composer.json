@@ -1,0 +1,11 @@
+{
+    "name": "mpzalewski/phpfwdays2020-test",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Mateusz Zalewski",
+            "email": "zaleslaw@gmail.com"
+        }
+    ],
+    "require": {}
+}
