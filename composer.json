@@ -1,11 +1,15 @@
 {
-    "name": "mpzalewski/phpfwdays2020-test",
+    "name": "mpzalewski/phpfwdays2020-rocking-with-bdd",
     "type": "project",
     "authors": [
         {
             "name": "Mateusz Zalewski",
-            "email": "zaleslaw@gmail.com"
+            "email": "mateusz.p.zalewski@gmail.com",
+            "homepage": "https://mpzalewski.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "require-dev": {
+        "behat/behat": "^3.6"
+    }
 }
