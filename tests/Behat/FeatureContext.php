@@ -6,9 +6,9 @@ namespace App\Tests\Behat;
 
 use App\Entity\Book;
 use Behat\Behat\Context\Context;
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Mink\Session;
-use Doctrine\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Webmozart\Assert\Assert;
 
@@ -17,7 +17,7 @@ final class FeatureContext implements Context
     /** @var Book */
     private $book;
 
-    /** @var ObjectManager */
+    /** @var EntityManagerInterface */
     private $bookManager;
 
     /** @var Session */
@@ -26,11 +26,21 @@ final class FeatureContext implements Context
     /** @var RouterInterface */
     private $router;
 
-    public function __construct(ObjectManager $bookManager, Session $session, RouterInterface $router)
+    public function __construct(EntityManagerInterface $bookManager, Session $session, RouterInterface $router)
     {
         $this->bookManager = $bookManager;
         $this->session = $session;
         $this->router = $router;
+    }
+
+    /**
+     * @BeforeScenario
+     */
+    public function purgeDatabase(): void
+    {
+        $this->bookManager->getConnection()->getConfiguration()->setSQLLogger(null);
+        (new ORMPurger($this->bookManager))->purge();
+        $this->bookManager->clear();
     }
 
     /**

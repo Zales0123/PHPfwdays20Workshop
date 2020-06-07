@@ -40,7 +40,8 @@
         "friends-of-behat/symfony-extension": "^2.0",
         "friends-of-behat/mink": "^1.8",
         "friends-of-behat/mink-extension": "^2.4",
-        "friends-of-behat/mink-browserkit-driver": "^1.4"
+        "friends-of-behat/mink-browserkit-driver": "^1.4",
+        "doctrine/data-fixtures": "^1.4"
     },
     "autoload": {
         "psr-4": {
