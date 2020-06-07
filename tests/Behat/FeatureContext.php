@@ -2,15 +2,26 @@
 
 declare(strict_types=1);
 
+namespace App\Tests\Behat;
+
 use App\Entity\Book;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Tester\Exception\PendingException;
+use Doctrine\Persistence\ObjectManager;
 use Webmozart\Assert\Assert;
 
 final class FeatureContext implements Context
 {
     /** @var Book */
     private $book;
+
+    /** @var ObjectManager */
+    private $bookManager;
+
+    public function __construct(ObjectManager $bookManager)
+    {
+        $this->bookManager = $bookManager;
+    }
 
     /**
      * @Given there is a book :title by :author
@@ -36,6 +47,9 @@ final class FeatureContext implements Context
     public function itsGenreIs(string $genre): void
     {
         $this->book->setGenre($genre);
+
+        $this->bookManager->persist($this->book);
+        $this->bookManager->flush();
     }
 
     /**

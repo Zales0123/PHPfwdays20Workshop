@@ -90,6 +90,21 @@
     "egulias/email-validator": {
         "version": "2.1.17"
     },
+    "friends-of-behat/symfony-extension": {
+        "version": "2.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.0",
+            "ref": "3d21344765fd3440a85bdd27d4cada186ec628bd"
+        },
+        "files": [
+            "behat.yml.dist",
+            "config/services_test.yaml",
+            "features/demo.feature",
+            "tests/Behat/DemoContext.php"
+        ]
+    },
     "monolog/monolog": {
         "version": "2.1.0"
     },
@@ -355,6 +370,9 @@
         "version": "v5.1.0"
     },
     "symfony/property-info": {
+        "version": "v5.1.0"
+    },
+    "symfony/proxy-manager-bridge": {
         "version": "v5.1.0"
     },
     "symfony/routing": {
