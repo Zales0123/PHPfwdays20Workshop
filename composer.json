@@ -10,6 +10,12 @@
     ],
     "require": {},
     "require-dev": {
-        "behat/behat": "^3.6"
+        "behat/behat": "^3.6",
+        "phpspec/phpspec": "^6.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
     }
 }

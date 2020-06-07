@@ -5,11 +5,11 @@ Feature: Book details
 
     Background:
         Given there is a book "Harry Potter and The Goblet of Fire" by "J.K. Rowling"
-        And its release date is 8.07.2000
+        And its release date is "8.07.2000"
         And its genre is "Fantasy"
 
     Scenario: Browsing book details
         When I check the details of "Harry Potter and The Goblet of Fire" book
         Then I should notice it's written by "J.K. Rowling"
         And it should be categories as "Fantasy"
-        And it was released on 8.07.2000
+        And it was released on "8.07.2000"
