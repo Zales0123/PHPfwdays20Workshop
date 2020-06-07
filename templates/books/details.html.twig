@@ -1,0 +1,9 @@
+<html>
+    <head><title>Book details</title></head>
+    <body>
+        <h1 id="title">{{ book.title }}</h1>
+        <br/>Author: <span id="author">{{ book.author }}</span>
+        <br/>Genre: <span id="genre">{{ book.genre }}</span>
+        <br/>Release date: <span id="release-date">{{ book.releaseDate|date('d.m.Y') }}</span>
+    </body>
+</html>

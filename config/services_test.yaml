@@ -6,3 +6,5 @@ services:
     App\Tests\Behat\FeatureContext:
         arguments:
             - '@doctrine.orm.entity_manager'
+            - '@behat.mink.default_session'
+            - '@router'

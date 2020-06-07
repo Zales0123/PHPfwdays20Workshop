@@ -37,7 +37,10 @@
         "phpspec/phpspec": "^6.1",
         "symfony/debug-pack": "^1.0",
         "symfony/profiler-pack": "^1.0",
-        "friends-of-behat/symfony-extension": "^2.0"
+        "friends-of-behat/symfony-extension": "^2.0",
+        "friends-of-behat/mink": "^1.8",
+        "friends-of-behat/mink-extension": "^2.4",
+        "friends-of-behat/mink-browserkit-driver": "^1.4"
     },
     "autoload": {
         "psr-4": {

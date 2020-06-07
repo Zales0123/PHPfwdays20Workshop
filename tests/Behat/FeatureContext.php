@@ -7,7 +7,9 @@ namespace App\Tests\Behat;
 use App\Entity\Book;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Tester\Exception\PendingException;
+use Behat\Mink\Session;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Routing\RouterInterface;
 use Webmozart\Assert\Assert;
 
 final class FeatureContext implements Context
@@ -18,9 +20,17 @@ final class FeatureContext implements Context
     /** @var ObjectManager */
     private $bookManager;
 
-    public function __construct(ObjectManager $bookManager)
+    /** @var Session */
+    private $session;
+
+    /** @var RouterInterface */
+    private $router;
+
+    public function __construct(ObjectManager $bookManager, Session $session, RouterInterface $router)
     {
         $this->bookManager = $bookManager;
+        $this->session = $session;
+        $this->router = $router;
     }
 
     /**
@@ -53,11 +63,15 @@ final class FeatureContext implements Context
     }
 
     /**
-     * @When I check the details of :book book
+     * @When I check the details of :title book
      */
-    public function iCheckTheDetailsOfBook(string $book): void
+    public function iCheckTheDetailsOfBook(string $title): void
     {
-        // intentionally left blank, no use of this step in the domain context
+        $bookRepository = $this->bookManager->getRepository(Book::class);
+        /** @var Book $book */
+        $book = $bookRepository->findOneBy(['title' => $title]);
+
+        $this->session->visit($this->router->generate('app_book_details', ['id' => $book->getId()]));
     }
 
     /**
@@ -65,7 +79,7 @@ final class FeatureContext implements Context
      */
     public function iShouldNoticeItsWrittenBy(string $author): void
     {
-        Assert::same($this->book->getAuthor(), $author);
+        Assert::same($this->session->getPage()->find('css', '#author')->getText(), $author);
     }
 
     /**
@@ -73,7 +87,7 @@ final class FeatureContext implements Context
      */
     public function itShouldBeCategoriesAs(string $genre): void
     {
-        Assert::same($this->book->getGenre(), $genre);
+        Assert::same($this->session->getPage()->find('css', '#genre')->getText(), $genre);
     }
 
     /**
@@ -81,6 +95,6 @@ final class FeatureContext implements Context
      */
     public function itWasReleasedOn(string $releaseDate): void
     {
-        Assert::eq($this->book->getReleaseDate(), new \DateTime($releaseDate));
+        Assert::same($this->session->getPage()->find('css', '#release-date')->getText(), $releaseDate);
     }
 }
