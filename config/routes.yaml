@@ -2,3 +2,8 @@ app_book_details:
     path: /books/{id}
     defaults:
         _controller: App\Controller\BookController:detailsAction
+
+app_book_index:
+    path: /books
+    defaults:
+        _controller: App\Controller\BookController:indexAction

@@ -5,7 +5,11 @@ Feature: Books index
 
     Background:
         Given there is a book "Harry Potter and the Goblet of Fire" by "J.K. Rowling"
+        And its release date is "08.07.2000"
+        And its genre is "Fantasy"
         And there is a book "The Lord of the Rings: The Two Towers" by "J.R.R. Tolkien"
+        And its release date is "11.11.1954"
+        And its genre is "Fantasy"
 
     Scenario: Browsing books index
         When I browse books index
